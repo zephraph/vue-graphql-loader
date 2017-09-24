@@ -1,11 +1,53 @@
 {
+  "name": "vue-graphql-block",
+  "version": "0.0.0",
+  "author": "Zephraph <zephraph@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "tslint src/**/*.ts",
+    "release": "np --no-publish",
+    "precommit": "lint-staged",
+    "postcheckout": "yarn"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "tslint"
+    ]
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true
+  },
   "devDependencies": {
-    "prettier": "^1.6.1",
+    "@types/graphql": "^0.11.4",
+    "@types/jest": "^21.1.0",
+    "@types/loader-utils": "^1.1.0",
+    "@types/node": "^8.0.30",
+    "husky": "^0.14.3",
+    "jest": "^21.1.0",
+    "lint-staged": "^4.2.2",
+    "prettier": "^1.7.0",
+    "ts-jest": "^21.0.1",
     "tslint": "^5.7.0",
     "typescript": "^2.5.2"
   },
   "dependencies": {
     "graphql": "^0.11.3",
-    "graphql-tag": "^2.4.2"
+    "graphql-tag": "^2.4.2",
+    "loader-utils": "^1.1.0"
   }
 }
