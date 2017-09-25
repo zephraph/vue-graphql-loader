@@ -14,20 +14,14 @@
     "postcheckout": "yarn"
   },
   "lint-staged": {
-    "*.ts": [
-      "tslint"
-    ]
+    "*.ts": ["tslint"]
   },
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js"]
   },
   "prettier": {
     "singleQuote": true
@@ -43,7 +37,8 @@
     "prettier": "^1.7.0",
     "ts-jest": "^21.0.1",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.5.2",
+    "vue": "^2.4.4"
   },
   "dependencies": {
     "graphql": "^0.11.3",

@@ -1,11 +1,13 @@
-import { DocumentNode } from 'graphql';
+import { DocumentNode, OperationDefinitionNode } from 'graphql';
 
+export const verifyDocuments = (gqlNodes: DocumentNode[]) =>
+  noAnonymousQueries(gqlNodes);
 
-export const verifyDocument = (gql: DocumentNode) => isSingleDefinition(gql);
-
-export const isSingleDefinition = (gql: DocumentNode) =>
-  gql.definitions.length === 1
+export const noAnonymousQueries = (gqlNodes: DocumentNode[]) =>
+  gqlNodes.every(
+    node =>
+      node.definitions[0].kind === 'OperationDefinition' &&
+      (node.definitions[0] as OperationDefinitionNode).name !== null
+  )
     ? Promise.resolve()
-    : Promise.reject(
-        'graphql blocks can only have one statement per each block'
-      );
+    : Promise.reject('Anonymous queries are not allowed');
