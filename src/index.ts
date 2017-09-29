@@ -1,12 +1,18 @@
-import { DocumentNode } from 'graphql';
+import { DocumentNode, print } from 'graphql';
 import gql from 'graphql-tag';
 import { getOptions } from 'loader-utils';
 import { join } from 'path';
 import { loader } from 'webpack';
 
-import { verifyDocuments } from './gql-handlers';
+import { splitDocument, verifyDocuments } from './gql-handlers';
 
-interface CustomBlockAttributes {
+/**
+ * The attributes that can be used in the graphql block
+ */
+interface GraphqlBlockAttributes {
+  /**
+   * The name of a module that can replace the default implementation
+   */
   handler?: string;
 }
 
@@ -14,13 +20,12 @@ export default function graphqlLoader(
   this: loader.LoaderContext,
   source: string
 ) {
-  const attrs = getOptions(this) as CustomBlockAttributes;
+  const attrs = getOptions(this) as GraphqlBlockAttributes;
   const gqlDocument = gql(source) as DocumentNode;
+  const documents = splitDocument(gqlDocument);
+
   const handler = (attrs && attrs.handler) || join(__dirname, 'defaultHandler');
-  const documents = gqlDocument.definitions.map(def => ({
-    ...gqlDocument,
-    definitions: [def]
-  }));
+
   const callback = this.async() as loader.loaderCallback;
 
   verifyDocuments(documents)
@@ -41,8 +46,27 @@ export default function graphqlLoader(
       );
     })
     .catch(err => {
-      const errMsg = `${err}. Encountered in ${this.resourcePath}`;
-      callback(new Error(errMsg));
+      if (err && err.message && err.affected) {
+        const { message, affected } = err;
+        const errMsg =
+          '\t\n\n' +
+          `\t${message} (${this.resourcePath})` +
+          '\t\n\n' +
+          '\tResolve these affected items:' +
+          '\t\n\n' +
+          affected
+            .map((a: DocumentNode) => print(a))
+            .map((s: string) =>
+              s
+                .split('\n')
+                .map(s2 => '\t' + s2)
+                .join('\n')
+            )
+            .join('\n');
+        callback(new Error(errMsg));
+      } else {
+        callback(new Error(err));
+      }
     });
   return;
 }

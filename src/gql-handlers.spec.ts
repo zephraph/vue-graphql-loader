@@ -1,9 +1,14 @@
 import { readQuery } from './__fixtures__/gql-helper';
-import { isSingleDefinition } from './gql-handlers';
+import { noAnonymousQueries } from './gql-handlers';
 
-describe('isSingleDefinition()', () => {
-  it('should return false if more than one definition present', async () => {
-    const multiQueries = await readQuery('multiple-queries');
-    expect(isSingleDefinition(multiQueries)).toBe(false);
+describe('noAnonymousQueries()', () => {
+  it(`should reject if there's an anonymous query`, async () => {
+    const anonQuery = await readQuery('anon-query');
+    expect(noAnonymousQueries(anonQuery)).rejects.toBeDefined();
+  });
+
+  it('should resolve with a normal query', async () => {
+    const query = await readQuery('query');
+    return expect(noAnonymousQueries(query)).resolves;
   });
 });

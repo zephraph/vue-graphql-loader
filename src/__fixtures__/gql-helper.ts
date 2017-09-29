@@ -3,14 +3,16 @@ import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { join } from 'path';
 
+import { splitDocument } from '../gql-handlers';
+
 const rel = fileName => join(__dirname, 'gql', `${fileName}.gql`);
 
-export const readQuery = (name: string): Promise<DocumentNode> =>
+export const readQuery = (name: string): Promise<DocumentNode[]> =>
   new Promise((resolve, reject) => {
     readFile(rel(name), 'utf8', (err, data) => {
       if (err) {
         reject(err);
       }
-      resolve(gql(data) as DocumentNode);
+      resolve(splitDocument(gql(data) as DocumentNode));
     });
   });
