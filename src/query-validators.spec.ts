@@ -1,5 +1,5 @@
 import { readQuery } from './__fixtures__/gql-helper';
-import { noAnonymousQueries } from './gql-handlers';
+import { noAnonymousQueries } from './query-validators';
 
 describe('noAnonymousQueries()', () => {
   it(`should reject if there's an anonymous query`, async () => {

@@ -4,7 +4,11 @@ import { getOptions } from 'loader-utils';
 import { join } from 'path';
 import { loader } from 'webpack';
 
-import { splitDocument, verifyDocuments } from './gql-handlers';
+import {
+  splitDocument,
+  verifyDocuments,
+  DocumentError
+} from './query-validators';
 
 /**
  * The attributes that can be used in the graphql block
@@ -45,8 +49,8 @@ export default function graphqlLoader(
         }`
       );
     })
-    .catch(err => {
-      if (err && err.message && err.affected) {
+    .catch((err: DocumentError | string) => {
+      if (err && typeof err !== 'string' && err.message && err.affected) {
         const { message, affected } = err;
         const errMsg =
           '\t\n\n' +
@@ -65,7 +69,7 @@ export default function graphqlLoader(
             .join('\n');
         callback(new Error(errMsg));
       } else {
-        callback(new Error(err));
+        callback(new Error(err as string));
       }
     });
   return;

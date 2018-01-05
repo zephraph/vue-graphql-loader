@@ -11,7 +11,7 @@ export const splitDocument = (gqlDocument: DocumentNode): DocumentNode[] =>
     definitions: [def]
   }));
 
-interface DocumentError {
+export interface DocumentError {
   message: string;
   affected: DocumentNode[];
 }
