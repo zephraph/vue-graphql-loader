@@ -4,7 +4,7 @@ import { noAnonymousQueries } from './gql-handlers';
 describe('noAnonymousQueries()', () => {
   it(`should reject if there's an anonymous query`, async () => {
     const anonQuery = await readQuery('anon-query');
-    expect(noAnonymousQueries(anonQuery)).rejects.toBeDefined();
+    return expect(noAnonymousQueries(anonQuery)).rejects.toBeDefined();
   });
 
   it('should resolve with a normal query', async () => {

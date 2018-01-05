@@ -26,7 +26,7 @@ export const noAnonymousQueries = (
     const anonymousQueries = gqlNodes.filter(
       node =>
         node.definitions[0].kind === 'OperationDefinition' &&
-        (node.definitions[0] as OperationDefinitionNode).name === null
+        !(node.definitions[0] as OperationDefinitionNode).name
     );
 
     anonymousQueries.length === 0
