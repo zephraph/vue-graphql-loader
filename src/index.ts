@@ -20,6 +20,8 @@ interface GraphqlBlockAttributes {
   handler?: string;
 }
 
+export const defaultHandlerPath = join(__dirname, 'handlers', 'default');
+
 export default function graphqlLoader(
   this: loader.LoaderContext,
   source: string
@@ -28,7 +30,7 @@ export default function graphqlLoader(
   const gqlDocument = gql(source) as DocumentNode;
   const documents = splitDocument(gqlDocument);
 
-  const handler = (attrs && attrs.handler) || join(__dirname, 'defaultHandler');
+  const handler = (attrs && attrs.handler) || defaultHandlerPath;
 
   const callback = this.async() as loader.loaderCallback;
 

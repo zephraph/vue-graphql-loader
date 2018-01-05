@@ -39,7 +39,7 @@ export type Handler = (
   attributes: object
 ) => void;
 
-const defaultHandler: Handler = function handler(
+const vueApolloHandler: Handler = function handler(
   component,
   gqlDocuments,
   attributes
@@ -62,4 +62,4 @@ const defaultHandler: Handler = function handler(
   };
 };
 
-export default defaultHandler;
+export default vueApolloHandler;
