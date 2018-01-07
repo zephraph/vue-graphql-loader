@@ -26,11 +26,7 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js"]
   },
   "prettier": {
     "singleQuote": true
@@ -49,11 +45,15 @@
     "tslint-config-prettier": "^1.6.0",
     "typescript": "^2.5.2",
     "vue": "^2.4.4",
+    "vue-apollo": "^3.0.0-alpha.2",
     "webpack": "^3.8.1"
   },
   "dependencies": {
     "graphql": "^0.12.3",
     "graphql-tag": "^2.4.2",
     "loader-utils": "^1.1.0"
+  },
+  "peerDependencies": {
+    "vue-apollo": "^3.0.0-alpha.2"
   }
 }
