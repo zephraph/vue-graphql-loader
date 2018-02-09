@@ -8,14 +8,14 @@
     "build:watch": "tsc --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint --fix --force -e src/__fixtures__/** src/**/*.ts",
     "release": "np --no-publish",
     "precommit": "lint-staged",
     "postcheckout": "yarn"
   },
   "lint-staged": {
     "*.ts": [
-      "tslint --fix",
+      "yarn lint",
       "prettier --write",
       "git add",
       "jest --bail --findRelatedTests"
@@ -26,19 +26,23 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": ["ts", "tsx", "js"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   },
   "prettier": {
     "singleQuote": true
   },
   "devDependencies": {
-    "@types/graphql": "^0.11.4",
+    "@types/graphql": "^0.12.3",
     "@types/jest": "^22.0.1",
     "@types/loader-utils": "^1.1.0",
     "@types/node": "^8.0.30",
     "husky": "^0.14.3",
     "jest": "^22.0.4",
-    "lint-staged": "^5.0.0",
+    "lint-staged": "^6.1.0",
     "prettier": "^1.7.0",
     "ts-jest": "^22.0.0",
     "tslint": "^5.7.0",
@@ -49,7 +53,7 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "graphql": "^0.12.3",
+    "graphql": "^0.13.0",
     "graphql-tag": "^2.4.2",
     "loader-utils": "^1.1.0"
   },
