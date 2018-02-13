@@ -1,4 +1,5 @@
 import { DocumentNode, OperationDefinitionNode } from 'graphql';
+import { GraphQLLoaderOptions } from './index';
 
 /**
  * Maps over the definitions in a Graphql document object and returns
@@ -16,8 +17,13 @@ export interface DocumentError {
   affected: DocumentNode[];
 }
 
-export const verifyDocuments = (gqlNodes: DocumentNode[]) =>
-  noAnonymousQueries(gqlNodes);
+export const verifyDocuments = (
+  gqlNodes: DocumentNode[],
+  loaderOptions: GraphQLLoaderOptions
+) =>
+  loaderOptions.noAnonymousQueries
+    ? noAnonymousQueries(gqlNodes)
+    : Promise.resolve();
 
 export const noAnonymousQueries = (
   gqlNodes: DocumentNode[]

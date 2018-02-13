@@ -4,45 +4,27 @@ import {
   OperationDefinitionNode,
   DefinitionNode
 } from 'graphql';
-import { ComponentOptions } from 'vue';
-
-interface ApolloQueryConfig {
-  query: DocumentNode;
-  variables?: {
-    [key: string]: string;
-  };
-  fetchPolicy?:
-    | 'cache-first'
-    | 'cache-and-network'
-    | 'network-only'
-    | 'cache-only'
-    | 'standby';
-}
-
-interface ApolloConfig {
-  [key: string]: DocumentNode | ApolloQueryConfig;
-}
-
-interface GraphqlComponentOptions extends ComponentOptions<any> {
-  apollo?: ApolloConfig;
-}
-
-interface GQLComponent {
-  options: GraphqlComponentOptions;
-}
+import Vue, { ComponentOptions } from 'vue';
+import { GraphQLBlockAttributes } from '../index';
 
 const def = (doc: DocumentNode): DefinitionNode => doc.definitions[0];
+const queryName = (
+  docDef: OperationDefinitionNode,
+  { alias }: GraphQLBlockAttributes = {}
+) => (alias ? alias : docDef.name ? docDef.name.value : 'query');
 
 export type Handler = (
-  component: GQLComponent,
+  component: {
+    options: ComponentOptions<Vue>;
+  },
   gqlDocuments: DocumentNode[],
-  attributes: object
+  attributes: GraphQLBlockAttributes
 ) => void;
 
 const vueApolloHandler: Handler = function handler(
   component,
   gqlDocuments,
-  attributes
+  attributes = {}
 ) {
   console.log({ component, gqlDocuments, attributes });
   if (!component.options.apollo) {
@@ -56,8 +38,11 @@ const vueApolloHandler: Handler = function handler(
           def(doc).kind === 'OperationDefinition' &&
           (def(doc) as OperationDefinitionNode).operation === 'query'
       )
-      // @ts-ignore
-      .map(doc => ({ [def(doc).name.value]: { query: doc } }))
+      .map(doc => ({
+        [queryName(def(doc) as OperationDefinitionNode, attributes)]: {
+          query: doc
+        }
+      }))
       .reduce((curr, acc) => ({ ...acc, ...curr }), {})
   };
 };

@@ -1,18 +1,13 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <h1>Hello: {{ hello }}</h1>
-    <h1>World: {{ world }}</h1>
+    <h1>Hello: {{ query }}</h1>
   </div>
 </template>
 
 <graphql>
-query Howdy {
+{
   hello
-  world
-}
-query world {
-  world
 }
 </graphql>
 

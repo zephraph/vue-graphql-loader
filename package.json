@@ -40,6 +40,7 @@
     "@types/jest": "^22.0.1",
     "@types/loader-utils": "^1.1.0",
     "@types/node": "^8.0.30",
+    "apollo-client": "^2.2.3",
     "husky": "^0.14.3",
     "jest": "^22.0.4",
     "lint-staged": "^6.1.0",

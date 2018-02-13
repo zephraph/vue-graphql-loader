@@ -1,7 +1,7 @@
-var path = require('path')
-var webpack = require('webpack')
+import * as path from 'path';
+import webpack from 'webpack';
 
-module.exports = {
+export default {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -15,7 +15,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            graphql: require.resolve('../../../lib')
+            graphql: [{ loader: require.resolve('../../../lib') }]
           }
           // other vue-loader options go here
         }
@@ -34,9 +34,10 @@ module.exports = {
       }
     ]
   },
+  devtool: 'source-map',
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js'
     }
   },
   devServer: {
@@ -46,4 +47,4 @@ module.exports = {
   performance: {
     hints: false
   }
-}
+} as webpack.Configuration;
