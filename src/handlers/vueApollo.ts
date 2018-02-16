@@ -7,11 +7,21 @@ import {
 import Vue, { ComponentOptions } from 'vue';
 import { GraphQLBlockAttributes } from '../index';
 
-const def = (doc: DocumentNode): DefinitionNode => doc.definitions[0];
-const queryName = (
+const getDefinitionNode = (doc: DocumentNode): DefinitionNode =>
+  doc.definitions[0];
+
+const getQueryName = (
   docDef: OperationDefinitionNode,
   { alias }: GraphQLBlockAttributes = {}
-) => (alias ? alias : docDef.name ? docDef.name.value : 'query');
+) => {
+  if (alias) return alias;
+  if (docDef.name) return docDef.name.value;
+  return '__anon_query__';
+};
+
+const isQuery = (definitionNode: DefinitionNode) =>
+  definitionNode.kind === 'OperationDefinition' &&
+  definitionNode.operation === 'query';
 
 export type Handler = (
   component: {
@@ -27,19 +37,15 @@ const vueApolloHandler: Handler = function handler(
   attributes = {}
 ) {
   console.log({ component, gqlDocuments, attributes });
-  if (!component.options.apollo) {
-    component.options.apollo = {};
-  }
   component.options.apollo = {
     ...component.options.apollo,
     ...gqlDocuments
-      .filter(
-        doc =>
-          def(doc).kind === 'OperationDefinition' &&
-          (def(doc) as OperationDefinitionNode).operation === 'query'
-      )
+      .filter(doc => isQuery(getDefinitionNode(doc)))
       .map(doc => ({
-        [queryName(def(doc) as OperationDefinitionNode, attributes)]: {
+        [getQueryName(
+          getDefinitionNode(doc) as OperationDefinitionNode,
+          attributes
+        )]: {
           query: doc
         }
       }))
