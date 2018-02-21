@@ -1,4 +1,4 @@
-# [ALPHA] vue-graphql-block
+# [ALPHA] vue-graphql-loader
 
 Custom support for GQL queries in Vue's single file components
 
@@ -20,12 +20,12 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            graphql: require.resolve('vue-graphql-block')
+            graphql: require.resolve('vue-graphql-loader')
           }
           // other vue-loader options go here
         }
       }
     ]
   }
-}
+};
 ```
