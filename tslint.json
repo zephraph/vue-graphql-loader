@@ -12,7 +12,8 @@
     "interface-name": [true, "never-prefix"],
     "ordered-imports": [false],
     "no-consecutive-blank-lines": false,
-    "curly": [true, "ignore-same-line"]
-  },
-  "rulesDirectory": []
+    "curly": [true, "ignore-same-line"],
+    "no-unused-variable": true,
+    "no-unused-expression": true
+  }
 }

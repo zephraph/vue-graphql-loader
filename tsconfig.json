@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "target": "es5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */,
-    "module": "commonjs" /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */,
+    "target":
+      "es5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */,
+    "module":
+      "commonjs" /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */,
     "lib": [
       "es2015",
       "dom",
@@ -41,7 +43,7 @@
     "types": [
       "vue-apollo/types/index",
       "vue-apollo/types/vue"
-    ] /* Type declaration files to be included in compilation. */
+    ] /* Type declaration files to be included in compilation. */,
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     /* Source Map Options */
     // "sourceRoot": "./",                    /* Specify the location where debugger should locate TypeScript files instead of source locations. */
@@ -51,14 +53,8 @@
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    "noUnusedLocals": true
   },
-  "include": [
-    "src/**/*",
-    "globals.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "src/__fixtures__/**",
-    "src/**/*.spec.ts"
-  ]
+  "include": ["src/**/*", "globals.d.ts"],
+  "exclude": ["node_modules", "src/__fixtures__/**", "src/**/*.spec.ts"]
 }

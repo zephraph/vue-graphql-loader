@@ -1,5 +1,5 @@
 import { DocumentNode, OperationDefinitionNode } from 'graphql';
-import { GraphQLLoaderOptions } from './index';
+import { GraphQLLoaderOptions } from './loader-options';
 
 /**
  * Maps over the definitions in a Graphql document object and returns
