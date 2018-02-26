@@ -1,6 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Vue Apollo Handler buildApolloOptions should return a simple named query 1`] = `
+exports[`Vue Apollo Handler buildApolloOptions should match a simple anonymous query snapshot 1`] = `
+Object {
+  "__anon_query__": Object {
+    "query": Object {
+      "definitions": Array [
+        Object {
+          "directives": Array [],
+          "kind": "OperationDefinition",
+          "name": undefined,
+          "operation": "query",
+          "selectionSet": Object {
+            "kind": "SelectionSet",
+            "selections": Array [
+              Object {
+                "alias": undefined,
+                "arguments": Array [],
+                "directives": Array [],
+                "kind": "Field",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "hello",
+                },
+                "selectionSet": undefined,
+              },
+            ],
+          },
+          "variableDefinitions": Array [],
+        },
+      ],
+      "kind": "Document",
+      "loc": Object {
+        "end": 9,
+        "start": 0,
+      },
+    },
+  },
+}
+`;
+
+exports[`Vue Apollo Handler buildApolloOptions should match a simple named query snapshot 1`] = `
 Object {
   "Hello": Object {
     "query": Object {
