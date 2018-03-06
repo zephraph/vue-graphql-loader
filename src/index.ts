@@ -33,13 +33,13 @@ export const withOptions = (
           null,
           `
         let gqlDocs = ${JSON.stringify(documents)};
-        let attrs = ${JSON.stringify(attrs)} || {};
+        let attrs = ${JSON.stringify({ ...options, ...attrs })} || {};
         let handler = require(${JSON.stringify(handler)});
 
         if (handler.default) {
           handler = handler.default;
         }
-        module.exports = function(component) {
+        module.exports = function vueGraphqlLoader(component) {
           handler(component, gqlDocs, attrs);
         }`
         );

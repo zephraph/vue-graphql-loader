@@ -8,8 +8,6 @@ Custom support for GQL queries in Vue's single file components
 
 ![Standby](https://media.giphy.com/media/3oz8xOvhnSpVOs9xza/giphy.gif)
 
-## Usage
-
 Configure this package as a custom loader for the `graphql` block in vue-loader
 
 ```javascript
@@ -30,4 +28,28 @@ module.exports = {
     ]
   }
 };
+```
+
+## Usage
+
+```vue
+<template>
+  <h1>{{ greetings }}</h1>
+</template>
+
+<graphql>
+{
+  greetings
+}
+</graphql>
+
+<script>
+export default {
+  data() {
+    return {
+      greeting: 'waiting for greeting'
+    };
+  }
+};
+</script>
 ```

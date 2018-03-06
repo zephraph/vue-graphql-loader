@@ -1,24 +1,7 @@
-import { DocumentNode, OperationDefinitionNode, DefinitionNode } from 'graphql';
-import Vue, { ComponentOptions } from 'vue';
+import { DocumentNode, OperationDefinitionNode } from 'graphql';
 import { GraphQLBlockAttributes } from '../index';
-
-export const ANONYMOUS_QUERY = '__anon_query__';
-
-const getDefinitionNode = (doc: DocumentNode): DefinitionNode =>
-  doc.definitions[0];
-
-const getQueryName = (
-  docDef: OperationDefinitionNode,
-  { alias }: GraphQLBlockAttributes = {}
-) => {
-  if (alias) return alias;
-  if (docDef.name) return docDef.name.value;
-  return ANONYMOUS_QUERY;
-};
-
-const isQuery = (definitionNode: DefinitionNode) =>
-  definitionNode.kind === 'OperationDefinition' &&
-  definitionNode.operation === 'query';
+import { Handler } from './handler';
+import { isQuery, getDefinitionNode, getQueryName } from '../gql-ast-helpers';
 
 export const buildApolloOptions = (
   gqlDocuments: DocumentNode[],
@@ -36,14 +19,6 @@ export const buildApolloOptions = (
     }))
     .reduce((curr, acc) => ({ ...acc, ...curr }), {});
 
-export type Handler = (
-  component: {
-    options: ComponentOptions<Vue>;
-  },
-  gqlDocuments: DocumentNode[],
-  attributes: GraphQLBlockAttributes
-) => void;
-
 const vueApolloHandler: Handler = function handler(
   component,
   gqlDocuments,
@@ -53,6 +28,7 @@ const vueApolloHandler: Handler = function handler(
     ...component.options.apollo,
     ...buildApolloOptions(gqlDocuments, attributes)
   };
+  return component;
 };
 
 export default vueApolloHandler;
