@@ -1,5 +1,7 @@
 # [ALPHA] vue-graphql-loader
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zephraph/vue-graphql-loader.svg)](https://greenkeeper.io/)
+
 Custom support for GQL queries in Vue's single file components
 
 ## Installation
