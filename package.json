@@ -34,7 +34,7 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@types/graphql": "^0.12.3",
+    "@types/graphql": "^0.13.0",
     "@types/jest": "^22.0.1",
     "@types/loader-utils": "^1.1.0",
     "@types/node": "^9.4.6",
