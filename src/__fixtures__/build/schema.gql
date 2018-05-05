@@ -1,8 +1,0 @@
-type Query {
-  hello: String @fake(type: firstName)
-  world: String @fake(type: lastName)
-}
-
-type Schema {
-  query: Query
-}
