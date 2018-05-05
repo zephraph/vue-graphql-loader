@@ -1,10 +1,19 @@
 language: node_js
 node_js:
-- '6'
 - '8'
 - '9'
+- '10'
 cache: yarn
 script: 
   - yarn lint
   - yarn build
   - yarn test
+# deploy:
+#   provider: npm
+#   email: zephraph@gmail.com
+#   api_key:
+#     secure: 
+#   on:
+#     branch: master
+#     tags: true
+#     repo: zephraph/vue-graphql-loader
