@@ -2,9 +2,9 @@
 export interface GraphQLLoaderOptions {
   /** The name of a module that can replace the default implementation */
   handler?: string;
-  noAnonymousQueries: boolean;
+  noAnonymousOperations: boolean;
 }
 
 export const defaultLoaderOptions: GraphQLLoaderOptions = {
-  noAnonymousQueries: false
+  noAnonymousOperations: false
 };

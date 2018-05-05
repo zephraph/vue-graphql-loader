@@ -6,19 +6,16 @@ import { loader } from 'webpack';
 
 import validationError from './validation-error';
 import { GraphQLLoaderOptions, defaultLoaderOptions } from './loader-options';
-import { splitDocument, verifyDocuments } from './query-validators';
+import { verifyDocuments } from './gql-validators';
+import { splitDocument } from './gql-ast-helpers';
 
-export interface GraphQLBlockAttributes {
-  alias?: string;
-}
-
-export const defaultHandlerPath = join(__dirname, 'handlers', 'default');
+export const defaultHandlerPath = join(__dirname, 'handler');
 
 export const withOptions = (
   options: GraphQLLoaderOptions = defaultLoaderOptions
 ) =>
   function graphqlLoader(this: loader.LoaderContext, source: string) {
-    const attrs = getOptions(this) as GraphQLBlockAttributes;
+    const attrs = getOptions(this) as object;
     const gqlDocument = gql(source) as DocumentNode;
     const documents = splitDocument(gqlDocument);
 
