@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "author": "Zephraph <zephraph@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zephraph/vue-graphql-loader"
+  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
@@ -27,15 +31,8 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "vue"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
   },
   "prettier": {
     "singleQuote": true
