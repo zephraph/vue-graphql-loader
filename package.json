@@ -9,7 +9,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tslint --fix --force -e src/__fixtures__/** src/**/*.ts",
-    "release": "np --no-publish",
+    "release": "np",
     "precommit": "lint-staged",
     "postcheckout": "yarn"
   },
@@ -27,15 +27,8 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "vue"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
   },
   "prettier": {
     "singleQuote": true
@@ -51,6 +44,7 @@
     "jest": "^22.0.4",
     "jest-serializer-vue": "^1.0.0",
     "lint-staged": "^7.0.0",
+    "np": "^2.20.1",
     "prettier": "^1.7.0",
     "ts-jest": "^22.0.0",
     "tslint": "^5.7.0",
