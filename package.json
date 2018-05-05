@@ -9,7 +9,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "tslint --fix --force -e src/__fixtures__/** src/**/*.ts",
-    "release": "np",
+    "release": "np --no-publish",
     "precommit": "lint-staged",
     "postcheckout": "yarn"
   },

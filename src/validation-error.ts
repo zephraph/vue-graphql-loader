@@ -1,5 +1,5 @@
 import { DocumentNode, print } from 'graphql';
-import { DocumentError } from './query-validators';
+import { DocumentError } from './gql-validators';
 import { loader } from 'webpack';
 
 const validationError = (
