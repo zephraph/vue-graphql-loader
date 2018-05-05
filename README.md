@@ -1,12 +1,11 @@
-# [ALPHA] vue-graphql-loader
+# vue-graphql-loader
 
+[![Build Status](https://travis-ci.org/zephraph/vue-graphql-loader.svg?branch=master)](https://travis-ci.org/zephraph/vue-graphql-loader)
 [![Greenkeeper badge](https://badges.greenkeeper.io/zephraph/vue-graphql-loader.svg)](https://greenkeeper.io/)
 
-Custom support for GQL queries in Vue's single file components
+Adds support for build time compilation of `<graphql>` blocks within Vue single file components.
 
 ## Installation
-
-![Standby](https://media.giphy.com/media/3oz8xOvhnSpVOs9xza/giphy.gif)
 
 Configure this package as a custom loader for the `graphql` block in vue-loader
 
@@ -32,24 +31,56 @@ module.exports = {
 
 ## Usage
 
-```vue
-<template>
-  <h1>{{ greetings }}</h1>
-</template>
+**Anonymous Operations**
 
+Anonymous queries, mutations, and subscriptions are stored on this.$query, this.$mutation, and this.$subscription respectively.
+
+```vue
 <graphql>
 {
   greetings
+}
+mutation {
+  doSomething(test: true) {
+    blah
+  }
+}
+subscription {
+  someFeed() {
+    name
+  }
 }
 </graphql>
 
 <script>
 export default {
-  data() {
-    return {
-      greeting: 'waiting for greeting'
-    };
+  created() {
+    console.log(this.$query, this.$mutation, this.$subscription);
   }
 };
 </script>
 ```
+
+When an anonymous operation is present, it's the only operation of that type allowed for the component. That means if there's an anonymous query present, that's the only query that can be included in the component.
+
+**Named Operations**
+
+Named operations are stored as an object the type's Vue namespace.
+
+```vue
+<graphql>
+query TestQuery {
+  test
+}
+</graphql>
+
+<script>
+export default {
+  created() {
+    console.log(this.$query.TestQuery);
+  }
+};
+</script>
+```
+
+It's highly recommended that you only use named operations.
