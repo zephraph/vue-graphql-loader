@@ -1,6 +1,6 @@
 {
   "name": "vue-graphql-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Zephraph <zephraph@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -31,8 +31,15 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
-    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "vue"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   },
   "prettier": {
     "singleQuote": true
