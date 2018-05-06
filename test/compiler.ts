@@ -30,11 +30,9 @@ export default (fixture, options = {}) => {
   compiler.outputFileSystem = new memoryfs();
 
   return new Promise((resolve, reject) => {
-    compiler
-      .run((err, stats) => {
-        if (err) reject(err);
-        resolve(stats);
-      })
-      .then(stats => stats.toJson().modules[0].source);
-  });
+    compiler.run((err, stats) => {
+      if (err) reject(err);
+      resolve(stats);
+    });
+  }).then(stats => (stats as webpack.Stats).toJson().modules[0].source);
 };
