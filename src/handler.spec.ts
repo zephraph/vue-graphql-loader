@@ -4,7 +4,7 @@ import handler, {
   getOperations,
   ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED
 } from './handler';
-import { strToDocNodes as gql } from './gql-ast-helpers';
+import { strToDocNodes as gql } from './gql-test-utils';
 
 describe('failWithError()', () => {
   it('should throw an error', () => {

@@ -1,12 +1,10 @@
 import {
-  strToDocNodes,
   isOperationType,
   getDefinitionNode,
   getOperationsOfType,
   getOperationName
 } from './gql-ast-helpers';
-
-const gql = strToDocNodes;
+import { strToDocNodes as gql } from './gql-test-utils';
 
 describe('isOperationType()', () => {
   it('should return true if the given document contains the matching operation definition', () => {

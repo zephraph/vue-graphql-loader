@@ -1,8 +1,8 @@
 import { noAnonymousOperations } from './gql-validators';
-import { strToDocNodes } from './gql-ast-helpers';
+import { strToDocNodes as gql } from './gql-test-utils';
 
-const anonQuery = strToDocNodes('{ hello }');
-const namedQuery = strToDocNodes('query Test { hi }');
+const anonQuery = gql('{ hello }');
+const namedQuery = gql('query Test { hi }');
 
 describe('noAnonymousOperations()', () => {
   it(`should reject if there's an anonymous query`, async () => {
