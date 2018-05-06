@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/zephraph/vue-graphql-loader.svg?branch=master)](https://travis-ci.org/zephraph/vue-graphql-loader)
 [![Greenkeeper badge](https://badges.greenkeeper.io/zephraph/vue-graphql-loader.svg)](https://greenkeeper.io/)
+[![npm](https://img.shields.io/npm/dt/vue-graphql-loader.svg)](https://www.npmjs.com/package/vue-graphql-loader)
+
 
 Adds support for build time compilation of `<graphql>` blocks within Vue single file components.
 
