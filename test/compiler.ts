@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import * as webpack from 'webpack';
 import * as memoryfs from 'memory-fs';
-import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 
 export default (fixture, options = {}) => {
   const compiler = webpack({
