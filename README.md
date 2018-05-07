@@ -17,13 +17,18 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            graphql: require.resolve('vue-graphql-loader')
+        loader: 'vue-loader'
+      },
+      {
+        resourceQuery: /blockType=graphql/,
+        use: [
+          {
+            loader: require.resolve('vue-graphql-loader'),
+            options: {
+              noAnonymousQueries: true
+            }
           }
-          // other vue-loader options go here
-        }
+        ]
       }
     ]
   }
