@@ -2,7 +2,15 @@
   <div></div>
 </template>
 
-<graphql>
+<script>
+export default {
+  created() {
+    console.log(this);
+  }
+};
+</script>
+
+<graphql test="valid">
 {
   test
 }

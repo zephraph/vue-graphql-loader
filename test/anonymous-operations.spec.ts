@@ -1,6 +1,7 @@
-import compiler from './compiler';
+import load from './componentLoader';
+import { mount, shallow } from '@vue/test-utils';
 
 it('should allow support anonymous operations', async () => {
-  const component = await compiler('./__fixtures__/anonymous-query.vue');
-  console.log(component);
+  const { default: component } = await load('anonymous-query');
+  const { vm } = shallow(component);
 });

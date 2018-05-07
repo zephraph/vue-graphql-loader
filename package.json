@@ -2,6 +2,7 @@
   "name": "vue-graphql-loader",
   "version": "0.1.3",
   "author": "Zephraph <zephraph@gmail.com>",
+  "main": "./lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,7 +14,7 @@
     "build:watch": "tsc --watch",
     "clean": "rimraf lib",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "run-p build:watch \"test --watch\"",
     "lint": "tslint --fix --force -e src/__fixtures__/** src/**/*.ts",
     "release": "np --no-publish",
     "precommit": "lint-staged",
@@ -33,8 +34,15 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
-    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "vue"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   },
   "prettier": {
     "singleQuote": true
@@ -52,7 +60,9 @@
     "lint-staged": "^7.0.0",
     "memory-fs": "^0.4.1",
     "np": "^2.20.1",
+    "npm-run-all": "^4.1.3",
     "prettier": "^1.7.0",
+    "require-from-string": "^2.0.2",
     "rimraf": "^2.6.2",
     "ts-jest": "^22.0.0",
     "tslint": "^5.7.0",
@@ -62,7 +72,7 @@
     "vue-jest": "^2.1.1",
     "vue-loader": "^15.0.9",
     "vue-template-compiler": "^2.5.13",
-    "webpack": "^3.11.0"
+    "webpack": "^4.7.0"
   },
   "dependencies": {
     "graphql": "^0.13.0",
