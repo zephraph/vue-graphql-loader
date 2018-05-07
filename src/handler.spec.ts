@@ -84,7 +84,7 @@ describe('default', () => {
     handler(component, query);
     expect(component).toEqual({
       options: {
-        $query: query[0]
+        query: query[0]
       }
     });
   });
@@ -100,7 +100,7 @@ describe('default', () => {
     handler(component, query);
     expect(component).toEqual({
       options: {
-        $query: {
+        query: {
           Greeting: query[0]
         }
       }

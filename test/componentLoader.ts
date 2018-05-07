@@ -8,5 +8,5 @@ export default async function componentLoader(componentName) {
     .readFileSync(resolve(__dirname, `${componentName}.js`))
     .toString();
   const { component } = requireFromString(src);
-  return component;
+  return component.default;
 }

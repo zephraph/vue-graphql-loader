@@ -10,9 +10,9 @@ import {
 import { DocumentNode } from 'graphql';
 
 interface GraphQLComponentOptions extends ComponentOptions<Vue> {
-  $query?: DocumentNode | { [key: string]: DocumentNode };
-  $mutation?: DocumentNode | { [key: string]: DocumentNode };
-  $subscription?: DocumentNode | { [key: string]: DocumentNode };
+  query?: DocumentNode | { [key: string]: DocumentNode };
+  mutation?: DocumentNode | { [key: string]: DocumentNode };
+  subscription?: DocumentNode | { [key: string]: DocumentNode };
 }
 
 type Handler = (
@@ -58,15 +58,18 @@ const defaultHandler: Handler = function handler(
   gqlDocuments,
   attributes = {}
 ) {
-  component.options.$query = getOperations('query', getQueries(gqlDocuments));
-  component.options.$mutation = getOperations(
+  component.options.query = getOperations('query', getQueries(gqlDocuments));
+  component.options.mutation = getOperations(
     'mutation',
     getMutations(gqlDocuments)
   );
-  component.options.$subscription = getOperations(
+  component.options.subscription = getOperations(
     'subscription',
     getSubscriptions(gqlDocuments)
   );
+
+  // @ts-ignore
+  delete component.options._Ctor;
 };
 
 export default defaultHandler;
