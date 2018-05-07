@@ -1,16 +1,6 @@
-import handler, {
-  failWithError,
-  aggregateOperations,
-  getOperations,
-  ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED
-} from './handler';
+import handler, { aggregateOperations, getOperations } from './handler';
 import { strToDocNodes as gql } from './gql-test-utils';
-
-describe('failWithError()', () => {
-  it('should throw an error', () => {
-    expect(() => failWithError('test')).toThrowError('test');
-  });
-});
+import { ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED } from './gql-validators';
 
 describe('aggregteOperations()', () => {
   it('should combine multiple operations into a single object', () => {
@@ -52,7 +42,7 @@ describe('getOperations()', () => {
       }
     `);
     expect(() => getOperations('query', queries)).toThrowError(
-      ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED('query')
+      ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED
     );
   });
   it('should return aggregate option for multiple named operations', () => {

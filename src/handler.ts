@@ -8,6 +8,10 @@ import {
   getSubscriptions
 } from './gql-ast-helpers';
 import { DocumentNode } from 'graphql';
+import {
+  failWithError,
+  ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED
+} from './gql-validators';
 
 interface GraphQLComponentOptions extends ComponentOptions<Vue> {
   query?: DocumentNode | { [key: string]: DocumentNode };
@@ -23,13 +27,6 @@ type Handler = (
   gqlDocuments: DocumentNode[],
   attributes?: object
 ) => void;
-
-export const ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED = (type: OperationType) =>
-  `Only one anonymous ${type} allowed per component`;
-
-export const failWithError = (err: string) => {
-  throw new Error(err);
-};
 
 export const aggregateOperations = (operations: DocumentNode[]) =>
   operations
@@ -50,7 +47,7 @@ export const getOperations = (
     : hasAnonymousOperation(operations)
       ? operations.length === 1
         ? operations[0]
-        : failWithError(ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED(type))
+        : failWithError(ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED)
       : aggregateOperations(operations);
 
 const defaultHandler: Handler = function handler(
