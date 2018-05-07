@@ -4,7 +4,6 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/zephraph/vue-graphql-loader.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/npm/dt/vue-graphql-loader.svg)](https://www.npmjs.com/package/vue-graphql-loader)
 
-
 Adds support for build time compilation of `<graphql>` blocks within Vue single file components.
 
 ## Installation
@@ -57,7 +56,11 @@ subscription {
 <script>
 export default {
   created() {
-    console.log(this.$query, this.$mutation, this.$subscription);
+    console.log(
+      this.$options.query,
+      this.$options.mutation,
+      this.$options.subscription
+    );
   }
 };
 </script>
@@ -79,7 +82,7 @@ query TestQuery {
 <script>
 export default {
   created() {
-    console.log(this.$query.TestQuery);
+    console.log(this.$options.query.TestQuery);
   }
 };
 </script>
