@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import * as path from 'path';
 import * as webpack from 'webpack';
 import * as memoryfs from 'memory-fs';
 import { VueLoaderPlugin } from 'vue-loader';
@@ -23,12 +23,20 @@ const webpackCompilation = (
     mode: 'production',
     // @ts-ignore
     context: __dirname,
+    optimization: {
+      minimize: false
+    },
     entry: `./${fixture}`,
     output: {
       libraryTarget: 'commonjs',
       library: 'component',
-      path: resolve(__dirname),
+      path: path.resolve(__dirname),
       filename: `${componentName}.js`
+    },
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm.js'
+      }
     },
     module: {
       rules: [
