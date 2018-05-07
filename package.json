@@ -34,15 +34,8 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "vue"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
   },
   "prettier": {
     "singleQuote": true
@@ -78,6 +71,10 @@
     "graphql": "^0.13.0",
     "graphql-tag": "^2.4.2",
     "loader-utils": "^1.1.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.0.0",
+    "vue-loader": "^15.0.0"
   },
   "resolutions": {
     "babel-register/source-map-support": "0.5.5"
