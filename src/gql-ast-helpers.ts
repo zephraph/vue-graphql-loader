@@ -20,6 +20,11 @@ export const splitDocument = (gqlDocument: DocumentNode): DocumentNode[] =>
 
 export type OperationType = OperationDefinitionNode['operation'];
 export type OperationFilter = (definitionNode: DefinitionNode) => boolean;
+export const operations: OperationType[] = [
+  'query',
+  'mutation',
+  'subscription'
+];
 
 export const isOperationType = (type: OperationType): OperationFilter => (
   definitionNode: DefinitionNode
@@ -45,9 +50,19 @@ export const getOperationName = (operation: DocumentNode): string => {
   return nameNode ? nameNode.value : '';
 };
 
+export const isOperation = (node: DocumentNode) =>
+  getDefinitionNode(node).kind === 'OperationDefinition';
+
 export const isAnonymousOperation = (node: DocumentNode) =>
-  node.definitions[0].kind === 'OperationDefinition' &&
-  !(node.definitions[0] as OperationDefinitionNode).name;
+  isOperation(node) &&
+  !(getDefinitionNode(node) as OperationDefinitionNode).name;
+
+export const isNamedOperation = (node: DocumentNode) =>
+  isOperation(node) &&
+  !!(getDefinitionNode(node) as OperationDefinitionNode).name;
 
 export const hasAnonymousOperation = (nodes: DocumentNode[]) =>
   nodes.some(isAnonymousOperation);
+
+export const hasNamedOperation = (nodes: DocumentNode[]) =>
+  nodes.some(isNamedOperation);

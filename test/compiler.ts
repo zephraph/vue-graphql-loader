@@ -49,9 +49,7 @@ const webpackCompilation = (
           use: [
             {
               loader: require.resolve('../lib/index'),
-              options: {
-                noAnonymousQueries: true
-              }
+              options
             }
           ]
         }
