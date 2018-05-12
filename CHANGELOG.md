@@ -1,3 +1,11 @@
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/zephraph/vue-graphql-loader/compare/v0.3.0...v0.3.1) (2018-05-12)
+
+
+### Bug Fixes
+
+* Ensure deploy triggers npm release ([#15](https://github.com/zephraph/vue-graphql-loader/issues/15)) ([1cd8bb7](https://github.com/zephraph/vue-graphql-loader/commit/1cd8bb7))
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/zephraph/vue-graphql-loader/compare/v0.2.0...v0.3.0) (2018-05-12)
 

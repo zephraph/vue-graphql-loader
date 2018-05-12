@@ -1,6 +1,6 @@
 {
   "name": "vue-graphql-loader",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Zephraph <zephraph@gmail.com>",
   "main": "./lib/index.js",
   "license": "MIT",
@@ -41,7 +41,10 @@
       "@semantic-release/npm",
       "@semantic-release/git"
     ],
-    "publish": ["@semantic-release/github", "@semantic-release/npm"]
+    "publish": [
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   },
   "jest": {
     "transform": {
@@ -49,8 +52,15 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
-    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "vue"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   },
   "prettier": {
     "singleQuote": true
