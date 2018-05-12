@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/zephraph/vue-graphql-loader.svg?branch=master)](https://travis-ci.org/zephraph/vue-graphql-loader)
 [![Greenkeeper badge](https://badges.greenkeeper.io/zephraph/vue-graphql-loader.svg)](https://greenkeeper.io/)
-[![npm](https://img.shields.io/npm/dt/vue-graphql-loader.svg)](https://www.npmjs.com/package/vue-graphql-loader)
+[![npm](https://img.shields.io/npm/dt/vue-graphql-loader.svg)](https://img.shields.io/npm/v/vue-graphql-loader.svg)
 
 Adds support for build time compilation of `<graphql>` blocks within Vue single file components.
 
@@ -25,7 +25,8 @@ module.exports = {
           {
             loader: require.resolve('vue-graphql-loader'),
             options: {
-              noAnonymousQueries: true
+              // Allow or disallow anonymous queries, mutations, etc. Defaults to true.
+              noAnonymousOperations: true
             }
           }
         ]
