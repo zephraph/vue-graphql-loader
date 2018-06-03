@@ -69,7 +69,7 @@
     "@semantic-release/changelog": "^2.0.2",
     "@semantic-release/git": "^5.0.0",
     "@types/graphql": "^0.13.0",
-    "@types/jest": "^22.0.1",
+    "@types/jest": "^23.0.0",
     "@types/loader-utils": "^1.1.0",
     "@types/node": "^10.0.7",
     "@vue/test-utils": "^1.0.0-beta.15",
