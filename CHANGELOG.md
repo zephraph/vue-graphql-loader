@@ -1,3 +1,11 @@
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/zephraph/vue-graphql-loader/compare/v0.3.1...v0.3.2) (2018-06-08)
+
+
+### Bug Fixes
+
+* **package:** update graphql to version 14.0.0-rc.1 ([#22](https://github.com/zephraph/vue-graphql-loader/issues/22)) ([603c039](https://github.com/zephraph/vue-graphql-loader/commit/603c039))
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/zephraph/vue-graphql-loader/compare/v0.3.0...v0.3.1) (2018-05-12)
 
