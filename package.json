@@ -73,7 +73,7 @@
     "@types/loader-utils": "^1.1.0",
     "@types/node": "^10.0.7",
     "@vue/test-utils": "^1.0.0-beta.15",
-    "apollo-client": "^2.2.3",
+    "apollo-client": "^2.4.3",
     "husky": "^0.14.3",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^2.0.0",
