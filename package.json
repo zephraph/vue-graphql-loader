@@ -93,7 +93,7 @@
     "vue": "^2.4.4",
     "vue-jest": "^2.1.1",
     "vue-loader": "^15.0.9",
-    "vue-template-compiler": "^2.5.13",
+    "vue-template-compiler": "2.5.17",
     "webpack": "^4.7.0"
   },
   "dependencies": {
