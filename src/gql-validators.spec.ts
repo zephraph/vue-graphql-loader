@@ -9,7 +9,6 @@ import {
 import { strToDocNodes as gql } from './gql-test-utils';
 
 const anonQuery = gql('{ hello }');
-const namedQuery = gql('query Test { hi }');
 const multiAnonQuery = gql(`{ test } { hello }`);
 const multiNamedQuery = gql(`
   query Query1 { test }
