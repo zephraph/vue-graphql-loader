@@ -39,9 +39,13 @@
     // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
-    // "typeRoots": [],                       /* List of folders to include type definitions from. */
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ] /* List of folders to include type definitions from. */,
     // "types": []                            /* Type declaration files to be included in compilation. */,
-    // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
+    "esModuleInterop": true,
     /* Source Map Options */
     // "sourceRoot": "./",                    /* Specify the location where debugger should locate TypeScript files instead of source locations. */
     // "mapRoot": "./",                       /* Specify the location where debugger should locate map files instead of generated locations. */
@@ -52,6 +56,5 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     "noUnusedLocals": true
   },
-  "include": ["src/**/*", "globals.d.ts"],
-  "exclude": ["node_modules", "src/__fixtures__/**", "src/**/*.spec.ts"]
+  "include": ["src/**/*", "types"]
 }
