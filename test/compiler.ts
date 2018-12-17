@@ -1,6 +1,6 @@
-import * as path from 'path';
-import * as webpack from 'webpack';
-import * as memoryfs from 'memory-fs';
+import path from 'path';
+import webpack from 'webpack';
+import Memoryfs from 'memory-fs';
 import { VueLoaderPlugin } from 'vue-loader';
 import {
   GraphQLLoaderOptions,
@@ -13,10 +13,10 @@ interface CompilationResult {
 }
 
 const webpackCompilation = (
-  componentName,
+  componentName: string,
   options: GraphQLLoaderOptions = defaultLoaderOptions
 ): Promise<CompilationResult> => {
-  const vfs = new memoryfs();
+  const vfs = new Memoryfs();
   const fixture = `./__fixtures__/${componentName}.vue`;
   const compiler = webpack({
     // @ts-ignore
@@ -60,7 +60,7 @@ const webpackCompilation = (
   compiler.outputFileSystem = vfs;
 
   return new Promise((resolve, reject) => {
-    compiler.run((err, stats) => {
+    compiler.run((err: Error, stats: webpack.Stats) => {
       if (err || stats.hasErrors()) reject(err || stats.toJson().errors);
       resolve({ stats, vfs });
     });
