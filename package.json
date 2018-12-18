@@ -87,7 +87,7 @@
     "tslint-config-prettier": "^1.6.0",
     "typescript": "^3.2.2",
     "vue": "^2.4.4",
-    "vue-jest": "^2.1.1",
+    "vue-jest": "^3.0.0",
     "vue-loader": "^15.0.9",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^4.27.1"
