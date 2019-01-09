@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prebuild": "yarn clean",
-    "build": "tsc",
+    "build": "tsc -d",
     "build:watch": "tsc --watch",
     "clean": "rimraf lib",
     "test": "jest",
@@ -41,10 +41,7 @@
       "@semantic-release/npm",
       "@semantic-release/git"
     ],
-    "publish": [
-      "@semantic-release/github",
-      "@semantic-release/npm"
-    ]
+    "publish": ["@semantic-release/github", "@semantic-release/npm"]
   },
   "jest": {
     "globals": {
@@ -58,15 +55,8 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "vue"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
   },
   "prettier": {
     "singleQuote": true
