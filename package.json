@@ -64,7 +64,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^7.0.0",
-    "@types/graphql": "^0.13.0",
+    "@types/graphql": "^14.2.1",
     "@types/jest": "^23.3.10",
     "@types/loader-utils": "^1.1.0",
     "@types/node": "^10.0.7",
