@@ -90,7 +90,7 @@
     "vue-jest": "^3.0.0",
     "vue-loader": "^15.0.9",
     "vue-template-compiler": "^2.5.13",
-    "webpack": "^4.27.1"
+    "webpack": "^4.40.2"
   },
   "dependencies": {
     "graphql": "^14.0.0-rc.1",
