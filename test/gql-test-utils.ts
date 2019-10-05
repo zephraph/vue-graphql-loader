@@ -1,4 +1,4 @@
-import { splitDocument } from './gql-ast-helpers';
+import { splitDocument } from '../src/gql-ast-helpers';
 import gql from 'graphql-tag';
 
 /**

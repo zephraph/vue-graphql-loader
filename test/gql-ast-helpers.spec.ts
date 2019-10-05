@@ -3,7 +3,7 @@ import {
   getDefinitionNode,
   getOperationsOfType,
   getOperationName
-} from './gql-ast-helpers';
+} from '../src/gql-ast-helpers';
 import { strToDocNodes as gql } from './gql-test-utils';
 
 describe('isOperationType()', () => {

@@ -1,6 +1,6 @@
 {
   "name": "vue-graphql-loader",
-  "version": "0.3.2",
+  "version": "0.4.2",
   "author": "Zephraph <zephraph@gmail.com>",
   "main": "./lib/index.js",
   "license": "MIT",
@@ -41,7 +41,10 @@
       "@semantic-release/npm",
       "@semantic-release/git"
     ],
-    "publish": ["@semantic-release/github", "@semantic-release/npm"]
+    "publish": [
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   },
   "jest": {
     "globals": {
@@ -55,8 +58,15 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "vue"],
-    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "vue"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   },
   "prettier": {
     "singleQuote": true
@@ -67,7 +77,9 @@
     "@types/graphql": "^0.13.0",
     "@types/jest": "^23.3.10",
     "@types/loader-utils": "^1.1.0",
+    "@types/memory-fs": "^0.3.2",
     "@types/node": "^10.0.7",
+    "@types/require-from-string": "^1.2.0",
     "@vue/test-utils": "^1.0.0-beta.15",
     "apollo-client": "^2.2.3",
     "husky": "^0.14.3",
