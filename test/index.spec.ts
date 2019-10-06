@@ -1,4 +1,4 @@
-import { defaultHandlerPath } from './index';
+import { defaultHandlerPath } from '../lib/index';
 
 describe(`defaultHandlerPath`, () => {
   it(`should exist`, async () => {

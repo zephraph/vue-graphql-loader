@@ -53,16 +53,9 @@ export const getOperationName = (operation: DocumentNode): string => {
 export const isOperation = (node: DocumentNode) =>
   getDefinitionNode(node).kind === 'OperationDefinition';
 
-export const isAnonymousOperation = (node: DocumentNode) =>
-  isOperation(node) &&
-  !(getDefinitionNode(node) as OperationDefinitionNode).name;
-
 export const isNamedOperation = (node: DocumentNode) =>
   isOperation(node) &&
   !!(getDefinitionNode(node) as OperationDefinitionNode).name;
-
-export const hasAnonymousOperation = (nodes: DocumentNode[]) =>
-  nodes.some(isAnonymousOperation);
 
 export const hasNamedOperation = (nodes: DocumentNode[]) =>
   nodes.some(isNamedOperation);

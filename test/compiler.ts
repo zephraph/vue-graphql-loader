@@ -2,10 +2,6 @@ import path from 'path';
 import webpack from 'webpack';
 import Memoryfs from 'memory-fs';
 import { VueLoaderPlugin } from 'vue-loader';
-import {
-  GraphQLLoaderOptions,
-  defaultLoaderOptions
-} from '../src/loader-options';
 
 interface CompilationResult {
   stats: webpack.Stats;
@@ -13,8 +9,7 @@ interface CompilationResult {
 }
 
 const webpackCompilation = (
-  componentName: string,
-  options: GraphQLLoaderOptions = defaultLoaderOptions
+  componentName: string
 ): Promise<CompilationResult> => {
   const vfs = new Memoryfs();
   const fixture = `./__fixtures__/${componentName}.vue`;
@@ -48,8 +43,7 @@ const webpackCompilation = (
           resourceQuery: /blockType=graphql/,
           use: [
             {
-              loader: require.resolve('../lib/index'),
-              options
+              loader: require.resolve('../lib/index')
             }
           ]
         }

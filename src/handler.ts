@@ -1,22 +1,25 @@
-import Vue, { ComponentOptions } from 'vue';
+import Vue from 'vue';
 import {
-  OperationType,
-  hasAnonymousOperation,
   getOperationName,
   getQueries,
   getMutations,
   getSubscriptions
 } from './gql-ast-helpers';
 import { DocumentNode } from 'graphql';
-import {
-  failWithError,
-  ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED
-} from './gql-validators';
 
-interface GraphQLComponentOptions extends ComponentOptions<Vue> {
-  query?: DocumentNode | { [key: string]: DocumentNode };
-  mutation?: DocumentNode | { [key: string]: DocumentNode };
-  subscription?: DocumentNode | { [key: string]: DocumentNode };
+// FIXME: find out how to merge interface defs here
+interface GraphQLComponentOptions {
+  query?: { [key: string]: DocumentNode };
+  mutation?: { [key: string]: DocumentNode };
+  subscription?: { [key: string]: DocumentNode };
+}
+
+declare module 'vue/types/options' {
+  interface GraphQLComponentOptions<V extends Vue> {
+    query?: { [key: string]: DocumentNode };
+    mutation?: { [key: string]: DocumentNode };
+    subscription?: { [key: string]: DocumentNode };
+  }
 }
 
 type Handler = (
@@ -28,40 +31,21 @@ type Handler = (
   attributes?: object
 ) => void;
 
-export const aggregateOperations = (operations: DocumentNode[]) =>
-  operations
-    .map(operation => ({
-      [getOperationName(operation)]: operation
-    }))
-    .reduce((acc, curr) => ({
-      ...acc,
-      ...curr
-    }));
+export const aggregateOperations = (ops?: DocumentNode[]) => {
+  if (!ops || ops.length < 1) {
+    return;
+  }
 
-export const getOperations = (
-  type: OperationType,
-  operations: DocumentNode[] = []
-) =>
-  operations.length === 0
-    ? undefined
-    : hasAnonymousOperation(operations)
-      ? operations.length === 1
-        ? operations[0]
-        : failWithError(ERROR_ONLY_ONE_ANON_OPERATION_ALLOWED)
-      : aggregateOperations(operations);
-
-const defaultHandler: Handler = function handler(
-  component,
-  gqlDocuments,
-  attributes = {}
-) {
-  component.options.query = getOperations('query', getQueries(gqlDocuments));
-  component.options.mutation = getOperations(
-    'mutation',
-    getMutations(gqlDocuments)
+  return ops.reduce(
+    (acc, curr) => ({ ...acc, [getOperationName(curr)]: curr }),
+    {}
   );
-  component.options.subscription = getOperations(
-    'subscription',
+};
+
+export const defaultHandler: Handler = (component, gqlDocuments) => {
+  component.options.query = aggregateOperations(getQueries(gqlDocuments));
+  component.options.mutation = aggregateOperations(getMutations(gqlDocuments));
+  component.options.subscription = aggregateOperations(
     getSubscriptions(gqlDocuments)
   );
 

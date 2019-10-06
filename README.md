@@ -8,7 +8,13 @@ Adds support for build time compilation of `<graphql>` blocks within Vue single 
 
 ## Installation
 
+`npm i -S vue-graphql-loader`
+
+## Setup
+
 Configure this package as a custom loader for the `graphql` block in vue-loader
+
+### Webpack
 
 ```javascript
 module.exports = {
@@ -23,11 +29,7 @@ module.exports = {
         resourceQuery: /blockType=graphql/,
         use: [
           {
-            loader: require.resolve('vue-graphql-loader'),
-            options: {
-              // Allow or disallow anonymous queries, mutations, etc. Defaults to true.
-              noAnonymousOperations: true
-            }
+            loader: require.resolve('vue-graphql-loader')
           }
         ]
       }
@@ -36,43 +38,38 @@ module.exports = {
 };
 ```
 
+### Vue-cli 3.x
+```javascript
+module.exports = {
+   chainWebpack: config => {
+    config.module
+      .rule('graphql')
+      .resourceQuery(/blockType=graphql/)
+      .use('vue-graphql-loader')
+      .loader('vue-graphql-loader')
+  },
+}
+```
+
+### Typescript
+
+To use this module with typescript, just add the following to your tsconfig.json:
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "vue-graphql-loader"
+    ]
+  }
+}
+```
+
 ## Usage
 
 **Anonymous Operations**
 
-Anonymous queries, mutations, and subscriptions are stored on this.$query, this.$mutation, and this.$subscription respectively.
-
-```vue
-<graphql>
-{
-  greetings
-}
-mutation {
-  doSomething(test: true) {
-    blah
-  }
-}
-subscription {
-  someFeed() {
-    name
-  }
-}
-</graphql>
-
-<script>
-export default {
-  created() {
-    console.log(
-      this.$options.query,
-      this.$options.mutation,
-      this.$options.subscription
-    );
-  }
-};
-</script>
-```
-
-When an anonymous operation is present, it's the only operation of that type allowed for the component. That means if there's an anonymous query present, that's the only query that can be included in the component.
+Starting from version 4.x, anonymous operations are not supported. Please use explicitly named operation as
+this.$options.query, this.$options.mutation and this.$options.subscription respectively.
 
 **Named Operations**
 
@@ -80,7 +77,15 @@ Named operations are stored as an object the type's Vue namespace.
 
 ```vue
 <graphql>
-query TestQuery {
+query testQuery {
+  test
+}
+
+mutation testMutation {
+  test
+}
+
+subscription testSubscription {
   test
 }
 </graphql>
@@ -88,10 +93,11 @@ query TestQuery {
 <script>
 export default {
   created() {
-    console.log(this.$options.query.TestQuery);
+    console.log(this.$options.query.testQuery);
+    console.log(this.$options.mutation.testMutation);
+    console.log(this.$options.subscription.testSubscription);
   }
 };
 </script>
 ```
 
-It's highly recommended that you only use named operations.

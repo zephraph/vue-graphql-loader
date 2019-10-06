@@ -2,11 +2,8 @@
   <div></div>
 </template>
 
-<graphql test="valid">
-{
-  test
-}
-{
-  again
+<graphql>
+query {
+  queryField
 }
 </graphql>
