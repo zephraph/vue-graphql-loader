@@ -3,6 +3,7 @@
   "version": "0.4.2",
   "author": "Zephraph <zephraph@gmail.com>",
   "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

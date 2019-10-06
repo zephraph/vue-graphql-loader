@@ -1,4 +1,4 @@
-import Vue, { ComponentOptions } from 'vue';
+import 'vue';
 import {
   getOperationName,
   getQueries,
@@ -7,10 +7,14 @@ import {
 } from './gql-ast-helpers';
 import { DocumentNode } from 'graphql';
 
-interface GraphQLComponentOptions extends ComponentOptions<Vue> {
+interface GraphQLComponentOptions {
   query?: { [key: string]: DocumentNode };
   mutation?: { [key: string]: DocumentNode };
   subscription?: { [key: string]: DocumentNode };
+}
+
+declare module 'vue/types/vue' {
+  interface Vue extends GraphQLComponentOptions {}
 }
 
 type Handler = (

@@ -32,7 +32,8 @@ describe('failOnAnonymous()', () => {
   });
 
   it('should fail when anonymous operation loaded from component', async () => {
-    const promise = load('anonymous');
-    expect(promise).rejects.toContain(ERROR_NO_ANONYMOUS_OPERATIONS);
+    load('anonymous')
+      .then(() => expect.assertions(0))
+      .catch((err: any[]) => err[0].includes(ERROR_NO_ANONYMOUS_OPERATIONS));
   });
 });

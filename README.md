@@ -51,6 +51,19 @@ module.exports = {
 }
 ```
 
+### Typescript
+
+To use this module with typescript, just add the following to your tsconfig.json:
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "vue-graphql-loader"
+    ]
+  }
+}
+```
+
 ## Usage
 
 **Anonymous Operations**
