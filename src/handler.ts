@@ -1,4 +1,4 @@
-import 'vue';
+import Vue from 'vue';
 import {
   getOperationName,
   getQueries,
@@ -7,14 +7,19 @@ import {
 } from './gql-ast-helpers';
 import { DocumentNode } from 'graphql';
 
+// FIXME: find out how to merge interface defs here
 interface GraphQLComponentOptions {
   query?: { [key: string]: DocumentNode };
   mutation?: { [key: string]: DocumentNode };
   subscription?: { [key: string]: DocumentNode };
 }
 
-declare module 'vue/types/vue' {
-  interface Vue extends GraphQLComponentOptions {}
+declare module 'vue/types/options' {
+  interface GraphQLComponentOptions<V extends Vue> {
+    query?: { [key: string]: DocumentNode };
+    mutation?: { [key: string]: DocumentNode };
+    subscription?: { [key: string]: DocumentNode };
+  }
 }
 
 type Handler = (
@@ -37,7 +42,7 @@ export const aggregateOperations = (ops?: DocumentNode[]) => {
   );
 };
 
-export const defaultHandler: Handler = function(component, gqlDocuments) {
+export const defaultHandler: Handler = (component, gqlDocuments) => {
   component.options.query = aggregateOperations(getQueries(gqlDocuments));
   component.options.mutation = aggregateOperations(getMutations(gqlDocuments));
   component.options.subscription = aggregateOperations(
