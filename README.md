@@ -29,11 +29,7 @@ module.exports = {
         resourceQuery: /blockType=graphql/,
         use: [
           {
-            loader: require.resolve('vue-graphql-loader'),
-            options: {
-              // Allow or disallow anonymous queries, mutations, etc. Defaults to true.
-              noAnonymousOperations: true
-            }
+            loader: require.resolve('vue-graphql-loader')
           }
         ]
       }
